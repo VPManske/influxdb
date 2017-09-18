@@ -53,6 +53,7 @@
 - [#8787](https://github.com/influxdata/influxdb/issues/8787): panic: runtime error: invalid memory address or nil pointer dereference.
 - [#8697](https://github.com/influxdata/influxdb/issues/8697): Drop Series Cause Write Fail/Write Timeouts/High Memory Usage
 - [#8741](https://github.com/influxdata/influxdb/issues/8741): Fix increased memory usage in cache and wal readers
+- [#8842](https://github.com/influxdata/influxdb/issues/8842): Fix various races in the Engine, likely triggered during closing shards.
 
 ## v1.3.4 [unreleased]
 
