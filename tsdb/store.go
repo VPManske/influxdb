@@ -769,7 +769,7 @@ func (s *Store) BackupShard(id uint64, since time.Time, w io.Writer) error {
 		return err
 	}
 
-	return shard.engine.Backup(w, path, since)
+	return shard.Backup(w, path, since)
 }
 
 // RestoreShard restores a backup from r to a given shard.
@@ -866,7 +866,7 @@ func (s *Store) DeleteSeries(database string, sources []influxql.Source, conditi
 				names = append(names, source.(*influxql.Measurement).Name)
 			}
 		} else {
-			if err := sh.engine.ForEachMeasurementName(func(name []byte) error {
+			if err := sh.ForEachMeasurementName(func(name []byte) error {
 				names = append(names, string(name))
 				return nil
 			}); err != nil {
@@ -881,7 +881,7 @@ func (s *Store) DeleteSeries(database string, sources []influxql.Source, conditi
 		// Find matching series keys for each measurement.
 		var keys [][]byte
 		for _, name := range names {
-			a, err := sh.engine.MeasurementSeriesKeysByExpr([]byte(name), condition)
+			a, err := sh.MeasurementSeriesKeysByExpr([]byte(name), condition)
 			if err != nil {
 				return err
 			}
